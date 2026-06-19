@@ -12,6 +12,7 @@ import (
 	"github.com/golangci/golangci-lint/v2/pkg/golinters/clickhouselint"
 	"github.com/golangci/golangci-lint/v2/pkg/golinters/containedctx"
 	"github.com/golangci/golangci-lint/v2/pkg/golinters/contextcheck"
+	"github.com/golangci/golangci-lint/v2/pkg/golinters/contextual"
 	"github.com/golangci/golangci-lint/v2/pkg/golinters/copyloopvar"
 	"github.com/golangci/golangci-lint/v2/pkg/golinters/cyclop"
 	"github.com/golangci/golangci-lint/v2/pkg/golinters/decorder"
@@ -187,6 +188,11 @@ func (LinterBuilder) Build(cfg *config.Config) ([]*linter.Config, error) {
 			WithSince("v1.43.0").
 			WithLoadForGoAnalysis().
 			WithURL("https://github.com/kkHAIKE/contextcheck"),
+
+		linter.NewConfig(contextual.New()).
+			WithSince("v2.12.0").
+			WithLoadForGoAnalysis().
+			WithURL("https://github.com/u-health/contextual"),
 
 		linter.NewConfig(copyloopvar.New(&cfg.Linters.Settings.CopyLoopVar)).
 			WithSince("v1.57.0").
